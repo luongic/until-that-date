@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đếm ngược theo giây</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: auto;
+            height: 100vh;
+                display: flex;
+    align-items: center;
+    justify-content: center;
+        }
+        #countdown {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="countdown">Đang tính toán...</div>
+
+    <script>
+        // Thời điểm mục tiêu (YYYY-MM-DDTHH:MM:SS)
+        const targetDate = new Date("2026-02-13").getTime();
+
+        const countdownElement = document.getElementById("countdown");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = Math.floor((targetDate - now) / 1000); // chênh lệch theo giây
+
+            if (diff <= 0) {
+                countdownElement.innerText = "Đã đến thời điểm!";
+                clearInterval(timer);
+                return;
+            }
+
+            countdownElement.innerText = diff ;
+        }
+
+        // Cập nhật ngay khi load
+        updateCountdown();
+
+        // Cập nhật mỗi giây
+        const timer = setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+</html>
